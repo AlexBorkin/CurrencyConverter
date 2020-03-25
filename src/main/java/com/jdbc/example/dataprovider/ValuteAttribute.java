@@ -3,7 +3,7 @@ package com.jdbc.example.dataprovider;
 import javax.xml.crypto.Data;
 import java.util.Date;
 
-public class CurrencyAttribute
+public class ValuteAttribute
 {
     private String numCode;
     private String charCode;

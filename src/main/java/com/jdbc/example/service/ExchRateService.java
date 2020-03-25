@@ -1,6 +1,5 @@
 package com.jdbc.example.service;
 
-import com.jdbc.example.dataprovider.CurrencyAttribute;
 import com.jdbc.example.entity.Currency;
 import com.jdbc.example.entity.ExchRate;
 import com.jdbc.example.mappers.CurrencyMapper;

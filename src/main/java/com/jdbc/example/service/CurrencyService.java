@@ -1,17 +1,11 @@
 package com.jdbc.example.service;
 
-import com.jdbc.example.dataprovider.CurrencyAttribute;
+import com.jdbc.example.dataprovider.ValuteAttribute;
 import com.jdbc.example.entity.Currency;
-import com.jdbc.example.entity.ExchRate;
 import com.jdbc.example.intf.InterfaceCurrency;
 import com.jdbc.example.mappers.CurrencyMapper;
-import com.jdbc.example.mappers.ExchRateMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
@@ -84,15 +78,15 @@ public class CurrencyService implements InterfaceCurrency
         return currency;
     }
 
-    public void fillCurrency(Map<String, CurrencyAttribute> map)
+    public void fillCurrency(Map<String, ValuteAttribute> map)
     {
-        ArrayList<CurrencyAttribute> currencyListAttribute;
+        ArrayList<ValuteAttribute> currencyListAttribute;
 
-        CurrencyAttribute curAttr;
+        ValuteAttribute curAttr;
 
         String strQuery = "insert into currency(\"CurrencyCode\", \"Description\", \"Nominal\", \"NumCode\") values (?,?,?,?);";
 
-        for (Map.Entry<String, CurrencyAttribute> curEntry: map.entrySet())
+        for (Map.Entry<String, ValuteAttribute> curEntry: map.entrySet())
         {
             curAttr = curEntry.getValue();
 

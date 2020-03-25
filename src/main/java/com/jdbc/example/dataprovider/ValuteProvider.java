@@ -2,7 +2,6 @@ package com.jdbc.example.dataprovider;
 
 import com.jdbc.example.entity.Currency;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
@@ -19,16 +18,16 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class CurrencyProvider
+public class ValuteProvider
 {
     private List<Currency>                 currencyList;
-    private Map<String, CurrencyAttribute> currencyAttributeMap = new HashMap<>();
+    private Map<String, ValuteAttribute> currencyAttributeMap = new HashMap<>();
     private Date                           currentDate;
 
     @Value("${ExchRateProvider.pathFile}")
     private String pathFile;
 
-    public CurrencyProvider()
+    public ValuteProvider()
     {
     }
 
@@ -36,11 +35,11 @@ public class CurrencyProvider
         return currentDate;
     }
 
-    public Map<String, CurrencyAttribute> getCurrencyAttributeMap() {
+    public Map<String, ValuteAttribute> getCurrencyAttributeMap() {
         return currencyAttributeMap;
     }
 
-    public void setCurrencyAttributeMap(Map<String, CurrencyAttribute> currencyAttributeMap) {
+    public void setCurrencyAttributeMap(Map<String, ValuteAttribute> currencyAttributeMap) {
         this.currencyAttributeMap = currencyAttributeMap;
     }
 
@@ -54,7 +53,7 @@ public class CurrencyProvider
         this.currencyList = currencyList;
     }
 
-    public Map<String, CurrencyAttribute> getMapDataFromSite() throws ParserConfigurationException, IOException, SAXException
+    public Map<String, ValuteAttribute> getMapDataFromSite() throws ParserConfigurationException, IOException, SAXException
     {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder        = factory.newDocumentBuilder();
@@ -79,20 +78,20 @@ public class CurrencyProvider
 
         for (int i = 0; i < nodeListValute.getLength(); i++)
         {
-            CurrencyAttribute currencyAttribute = new CurrencyAttribute();
+            ValuteAttribute valuteAttribute = new ValuteAttribute();
 
             Node            valuteNode     = nodeListValute.item(i);
             String          valuteId       = valuteNode.getAttributes().getNamedItem("ID").getNodeValue();
             NodeList        childList      = valuteNode.getChildNodes();
 
-            currencyAttribute.setNumCode(childList.item(0).getTextContent());
-            currencyAttribute.setCharCode(childList.item(1).getTextContent());
-            currencyAttribute.setNominal(childList.item(2).getTextContent());
-            currencyAttribute.setName(childList.item(3).getTextContent());
-            currencyAttribute.setValue(Double.parseDouble(childList.item(4).getTextContent().replace(",", ".")));
-            currencyAttribute.setCurDate(currentDate);
+            valuteAttribute.setNumCode(childList.item(0).getTextContent());
+            valuteAttribute.setCharCode(childList.item(1).getTextContent());
+            valuteAttribute.setNominal(childList.item(2).getTextContent());
+            valuteAttribute.setName(childList.item(3).getTextContent());
+            valuteAttribute.setValue(Double.parseDouble(childList.item(4).getTextContent().replace(",", ".")));
+            valuteAttribute.setCurDate(currentDate);
 
-            currencyAttributeMap.put(valuteId, currencyAttribute);
+            currencyAttributeMap.put(valuteId, valuteAttribute);
         }
 
         return currencyAttributeMap;
