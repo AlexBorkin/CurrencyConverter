@@ -28,6 +28,12 @@ public class ConverterController
         this.exchRateService = exchRateService;
     }
 
+    @GetMapping("/")
+    public String mainPage()
+    {
+        return "main";
+    }
+
     @GetMapping("/converter")
     public String showConverter(Model model)
     {
@@ -35,10 +41,10 @@ public class ConverterController
 
         Currency currencyDef = currencyList.get(3);
 
-        model.addAttribute("defFromCode", currencyDef.getCurrencyCode());
+        model.addAttribute("defFromCode",  currencyDef.getCurrencyCode());
         model.addAttribute("defFromDescr", currencyDef.getFullDescription());
-        model.addAttribute("defToCode", currencyDef.getCurrencyCode());
-        model.addAttribute("defToDescr", currencyDef.getFullDescription());
+        model.addAttribute("defToCode",    currencyDef.getCurrencyCode());
+        model.addAttribute("defToDescr",   currencyDef.getFullDescription());
 
         model.addAttribute("currencyFrom", currencyList);
         model.addAttribute("currencyTo", currencyList);
@@ -55,42 +61,21 @@ public class ConverterController
 
         List<Currency> currencyList = currencyService.listCurrency();
 
-//        if (currFrom != null && !currFrom.isEmpty() &&
-//            currTo != null && !currTo.isEmpty() &&
-//            (valueFrom != null))
-//        {
-            retVal = exchRateService.calcValue(currFrom, currTo, valueFrom);
+        retVal = exchRateService.calcValue(currFrom, currTo, valueFrom);
 
-            Currency currDefFrom = currencyService.getById(currFrom);
-            Currency currDefTo   = currencyService.getById(currTo);
+        Currency currDefFrom = currencyService.getById(currFrom);
+        Currency currDefTo   = currencyService.getById(currTo);
 
-            model.addAttribute("defFromCode", currDefFrom.getCurrencyCode());
-            model.addAttribute("defFromDescr", currDefFrom.getFullDescription());
-            model.addAttribute("defToCode", currDefTo.getCurrencyCode());
-            model.addAttribute("defToDescr", currDefTo.getFullDescription());
-//        }
+        model.addAttribute("defFromCode",  currDefFrom.getCurrencyCode());
+        model.addAttribute("defFromDescr", currDefFrom.getFullDescription());
+        model.addAttribute("defToCode",    currDefTo.getCurrencyCode());
+        model.addAttribute("defToDescr",   currDefTo.getFullDescription());
 
         model.addAttribute("currencyFrom", currencyList);
-        model.addAttribute("currencyTo", currencyList);
-        model.addAttribute("valueFrom", valueFrom);
-        model.addAttribute("retValue", retVal);
+        model.addAttribute("currencyTo",   currencyList);
+        model.addAttribute("valueFrom",    valueFrom);
+        model.addAttribute("retValue",     retVal);
 
         return "converter";
     }
-
-//       <option value = {{defFromCode}}>{{defFromDescr}}</option>
-//    {{#currencyFrom}}
-//                  <option value = {{currencyCode}}>{{fullDescription}}</option>
-//    {{/currencyFrom}}
-//          </select>
-//      </td>
-//      <td>
-//          <select name = "currTo">
-//              <option value = {{defToCode}}>{{defToDescr}}</option>
-//    {{#currencyTo}}
-//                  <option value = {{currencyCode}}>{{description}}</option>
-//    {{/currencyTo}}
-
-
-
 }

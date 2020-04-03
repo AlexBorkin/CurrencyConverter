@@ -7,35 +7,35 @@ import java.util.Date;
 @Component
 public class ExchRate
 {
-    private Date DateRate;
-    private Double CurrencyRate;
-    private String CurrencyCode;
+    private Date dateRate;
+    private Double currencyRate;
+    private String currencyCode;
 
     public ExchRate()
     {
     }
 
     public Date getDateRate() {
-        return DateRate;
+        return dateRate;
     }
 
     public void setDateRate(Date dateRate) {
-        DateRate = dateRate;
+        this.dateRate = dateRate;
     }
 
     public Double getCurrencyRate() {
-        return CurrencyRate;
+        return currencyRate;
     }
 
     public void setCurrencyRate(Double currencyRate) {
-        CurrencyRate = currencyRate;
+        this.currencyRate = currencyRate;
     }
 
     public String getCurrencyCode() {
-        return CurrencyCode;
+        return currencyCode;
     }
 
     public void setCurrencyCode(String currencyCode) {
-        CurrencyCode = currencyCode;
+        this.currencyCode = currencyCode;
     }
 }

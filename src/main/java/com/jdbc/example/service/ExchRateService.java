@@ -48,7 +48,6 @@ public class ExchRateService
         return exchRateList;
     }
 
-
     public Double calcValue(String currFrom, String currTo, Double value)
     {
         Double resValue = 0.0;
@@ -63,20 +62,16 @@ public class ExchRateService
         Currency currencyTo;
 
         String strQueryExchRate = "select * from public.\"exchRates\" AS RATE\n" +
-                "where \"CurrencyCode\" = ? \n" +
-                "order by \"DateRate\" desc LIMIT 1;";
+                                    "where \"CurrencyCode\" = ? \n" +
+                                    "order by \"DateRate\" desc LIMIT 1;";
 
-        String strQueryCurrency = "select * from public.\"currency\" \n" +
-                "where \"CurrencyCode\" = ? ;";
-
+        String strQueryCurrency = "select * from public.\"currency\" where \"CurrencyCode\" = ? ;";
 
         exchRateFrom = jdbcTemplate.queryForObject(strQueryExchRate, new Object[]{currFrom}, new ExchRateMapper());
         exchRateTo   = jdbcTemplate.queryForObject(strQueryExchRate, new Object[]{currTo}, new ExchRateMapper());
-
         currencyFrom = jdbcTemplate.queryForObject(strQueryCurrency, new Object[]{currFrom}, new CurrencyMapper());
         currencyTo   = jdbcTemplate.queryForObject(strQueryCurrency, new Object[]{currTo}, new CurrencyMapper());
 
-        //TODO ДОБАВИТЬ ЗА СКОЛЬКО ЕДЕНИЦ!!!
         resValue = value * ((exchRateFrom.getCurrencyRate() / currencyFrom.getNominal()) / (exchRateTo.getCurrencyRate() / currencyTo.getNominal()));
 
         return DoubleRounder.round(resValue, 4);

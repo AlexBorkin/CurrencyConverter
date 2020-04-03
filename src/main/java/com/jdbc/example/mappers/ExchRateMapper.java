@@ -12,6 +12,7 @@ public class ExchRateMapper implements RowMapper<ExchRate>
     public ExchRate mapRow(ResultSet resultSet, int i) throws SQLException
     {
         ExchRate exchRate = new ExchRate();
+        
         exchRate.setCurrencyCode(resultSet.getString("CurrencyCode"));
         exchRate.setDateRate(resultSet.getDate("DateRate"));
         exchRate.setCurrencyRate(resultSet.getDouble("CurrencyRate"));

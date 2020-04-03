@@ -24,7 +24,7 @@ public class ExchRateController
         this.exchRateService = exchRateService;
     }
 
-    @GetMapping("/ExchRate")
+    @GetMapping("/exchrates")
     public String getAll(Model model)
     {
         List<ExchRate> exchRateList = exchRateService.getAll();

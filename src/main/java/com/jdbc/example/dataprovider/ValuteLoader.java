@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-//Загрузка курсов валют с сайта
+//Загрузка курсов валют с сайта Центробанка
 @Component
 public class ValuteLoader
 {
@@ -33,7 +33,7 @@ public class ValuteLoader
     }
 
     @Scheduled(cron = "0 0/22 23 * * *")//Запуск каждый день в 20-30
-   // @Scheduled(fixedRate = 60000) //Каждые 5 минут
+   // @Scheduled(fixedRate = 60000)
     public void loadFromCBR()
     {
         Map<String, ValuteAttribute>  currencyAttributeMap = null;
@@ -62,6 +62,5 @@ public class ValuteLoader
         }
 
         System.out.println("Справочник валют загружен на дату: " + dateFormat.format(new Date()));
-
     }
 }

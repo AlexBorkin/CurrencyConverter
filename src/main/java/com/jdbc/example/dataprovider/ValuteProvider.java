@@ -21,25 +21,28 @@ import java.util.Map;
 public class ValuteProvider
 {
     private List<Currency>                 currencyList;
-    private Map<String, ValuteAttribute> currencyAttributeMap = new HashMap<>();
+    private Map<String, ValuteAttribute>   currencyAttributeMap = new HashMap<>();
     private Date                           currentDate;
 
-    @Value("${ExchRateProvider.pathFile}")
+    @Value("${ValuteProvider.pathFile}")
     private String pathFile;
 
     public ValuteProvider()
     {
     }
 
-    public Date getCurrentDate() {
+    public Date getCurrentDate()
+    {
         return currentDate;
     }
 
-    public Map<String, ValuteAttribute> getCurrencyAttributeMap() {
+    public Map<String, ValuteAttribute> getCurrencyAttributeMap()
+    {
         return currencyAttributeMap;
     }
 
-    public void setCurrencyAttributeMap(Map<String, ValuteAttribute> currencyAttributeMap) {
+    public void setCurrencyAttributeMap(Map<String, ValuteAttribute> currencyAttributeMap)
+    {
         this.currencyAttributeMap = currencyAttributeMap;
     }
 

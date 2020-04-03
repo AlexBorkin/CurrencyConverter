@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Курсы валют</title>
+<!--    <link rel="stylesheet" href="css/style.css"/>-->
+</head>
+<body>
+<div>Вход на сайт</div>
+
+<form  name='form' action="/login" method="post">
+    <table>
+        <tr>
+            <td><input type="text" name="username" ></td>
+        </tr>
+        <tr>
+            <td><input type="password" name="password" ></td>
+        </tr>
+        <tr>
+            <td><input type="submit" name="Вход" ></td>
+        </tr>
+        <input  type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+    </table>
+</form>
+<br>
+<a href="registration"><h3>Регистрация</h3></a>
+</body>
+</html>
