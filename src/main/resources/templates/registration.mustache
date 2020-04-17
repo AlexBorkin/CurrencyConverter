@@ -1,15 +1,14 @@
 <html>
 <head>
     <title>Регистрация</title>
-
     <style>
-          .boldSelect{
+    .boldSelect{
         position: relative;
         font-weight: 600;
-        width: 100%;
+        width: 80%;
         height: 30;
         font-family: Arial;
-        border: 3px solid LightGray;
+        border: 2px solid Grey;
         font-size: 15}
 
     .boldBtn{
@@ -17,11 +16,11 @@
         font-weight: bold;
         text-align: center;
         font-family: Arial;
-        height: 45;
-        width: 250;
+        height: 35;
+        width: 150;
         border-radius: 7px;
         background-color: #DCDCDC;
-        font-size: 15}
+        font-size: 16}
 
     .formTable{border-collapse:collapse;
                     border: 2px solid Grey;
@@ -32,23 +31,14 @@
                     text-align:center;}
 
     </style>
-
-
-    <!--    <link rel="stylesheet" href="css/style.css"/>-->
-<!--    <style>-->
-<!--        table {border-collapse: collapse;}-->
-<!--        table, td, th {border: 1px solid #999; padding: 5px;}-->
-<!--    </style>-->
 </head>
 <body>
 <div>{{error}}</div>
-<!--<div>РЕГИСТРАЦИЯ</div>-->
 <form name='form' action="/registration" method="post">
-
     <table align="center" width="500" class="formTable">
         <tr>
             <td colspan="2">
-                <h2 class="nameStyle">Регистрация</h2>
+                <h3 class="nameStyle">Регистрация</h3>
             </td>
         </tr>
 
@@ -69,11 +59,17 @@
                 <input type="password" name="password" class="boldSelect">
             </td>
         </tr>
-            <input  type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <input  type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <tr>
+            <td colspan="2" height="5"></td>
+        </tr>
         <tr>
             <td colspan="2" align="center">
-                <input type="submit" name="Зарегистрироваться" class="boldBtn">
+                <input type="submit" name="Registration" value="Регистрация" class="boldBtn">
             </td>
+        </tr>
+        <tr>
+            <td colspan="2" height="5"></td>
         </tr>
     </table>
 </form>
