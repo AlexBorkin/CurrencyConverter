@@ -1,0 +1,229 @@
+<html>
+<head>
+    <title>История запросов</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <!--    <style>-->
+
+    <!--        .mainTable{-->
+    <!--            position: relative;-->
+    <!--            width:100%;-->
+    <!--			height:100%;-->
+    <!--			border-collapse: collapse;-->
+    <!--			border: 5px solid White;-->
+    <!--            font-size: 14}-->
+
+    <!--		.subTable{-->
+    <!--            position: relative;-->
+    <!--            width:100%;-->
+    <!--			font-weight: bold;-->
+    <!--			border-collapse: collapse;-->
+    <!--			border: 2;-->
+    <!--            font-size: 14}-->
+
+    <!--        .mainTableCol{-->
+    <!--			width:20%;-->
+    <!--            &lt;!&ndash; border: 5px solid White; &ndash;&gt;-->
+    <!--            font-size: 14}-->
+
+    <!--		.mainTableCol2{-->
+    <!--			vertical-align: top;-->
+    <!--			width:60%;-->
+    <!--            border: 5px solid Balck;-->
+    <!--			background: LightGray;-->
+    <!--            font-size: 14}-->
+
+    <!--		.mainTableColHeader{-->
+    <!--			position: relative;-->
+    <!--            width:100%;-->
+    <!--			vertical-align: center;-->
+    <!--            border: 2px solid Black;-->
+    <!--			background: LightGray;-->
+    <!--            font-size: 14}-->
+
+    <!--		.mainTableColData{-->
+    <!--			position: relative;-->
+    <!--			font-weight: bold;-->
+    <!--			font-family: Arial;-->
+    <!--            width:100%;-->
+    <!--			vertical-align: center;-->
+    <!--            border: 2px solid Black;-->
+    <!--			border-collapse: separate;-->
+    <!--            font-size: 14}-->
+
+    <!--			select-->
+    <!--			{-->
+    <!--				align: center;-->
+    <!--				height: 30;-->
+    <!--				width:95%;-->
+    <!--				font-weight: bold;-->
+    <!--				font-family: Arial;-->
+    <!--				border: 2px solid Grey;-->
+    <!--				font-size: 16;-->
+    <!--			}-->
+
+    <!--			input{height: 30;-->
+    <!--				width:95%;-->
+    <!--				font-weight: bold;-->
+    <!--				font-family: Arial;-->
+    <!--				border: 2px solid Grey;-->
+    <!--				font-size: 16;-->
+    <!--			}-->
+
+    <!--			.boldBtn{-->
+    <!--				font-weight: bold;-->
+    <!--				font-family: Arial;-->
+    <!--				padding-left: 10%;-->
+    <!--				border: 3px solid LightGray;-->
+    <!--				border-radius: 3px;-->
+    <!--				height: 35;-->
+    <!--				width: 100;-->
+    <!--				border-radius: 2px;-->
+    <!--				background-color: #DCDCDC;-->
+    <!--				font-size: 16;}-->
+
+    <!--		.tableHeader{-->
+    <!--			font-weight: bold;-->
+    <!--			font-family: Arial;-->
+    <!--			background: LightGray;-->
+    <!--			height: 40;-->
+    <!--            font-size: 16;}-->
+
+    <!--		.tableRow{-->
+    <!--			font-weight: normal;-->
+    <!--			font-family: Arial;-->
+    <!--			vertical-align: center;-->
+    <!--            font-size: 14;}-->
+
+    <!--		.filters{-->
+    <!--			position: relative;-->
+    <!--			align:center;-->
+    <!--			font-weight: bold;-->
+    <!--			font-family: Arial;-->
+    <!--            font-size: 16}-->
+
+    <!--		   .two{-->
+    <!--            position: relative;-->
+    <!--            border-collapse:separate;-->
+    <!--            width:20%;-->
+    <!--            border-spacing:10px;-->
+    <!--            border: 3px solid LightGray;-->
+    <!--            border-radius: 7px;-->
+    <!--            background-color: #ADD8E6;-->
+    <!--            padding: 5px;-->
+    <!--            font-weight: 600;-->
+    <!--            box-shadow: 5px 5px 10px 5px LightGray;-->
+    <!--            margin-left: 25%;-->
+    <!--            margin-top: 5%;-->
+    <!--            font-size: 14}-->
+
+    <!--       .thHeader{-->
+    <!--            font-weight: bold;-->
+    <!--			font-family: Arial;-->
+    <!--            font-size: 1.0em;-->
+    <!--            background: LightGray;-->
+    <!--            padding: 5px 7px;-->
+    <!--            height: 40;-->
+    <!--            border: 1px solid black;-->
+    <!--            text-align:center;-->
+    <!--            }-->
+
+    <!--       .tdRow {-->
+    <!--            font-weight: bold;-->
+    <!--			font-family: Arial;-->
+    <!--            font-size: 0.8em;-->
+    <!--            padding: 5px 7px;-->
+    <!--            border: 1px solid black;-->
+    <!--            text-align:center;-->
+    <!--            }-->
+
+
+    <!--    </style>-->
+</head>
+<body>
+    <table align="center" width="800">
+        <tr align="center">
+            <td>
+                <table width="800" class="formTableData">
+                    <tr>
+                        <td class="menuElt"><a href="converter">Конвертер</a></td>
+                        <td class="menuElt"><a href="exchrates">Курсы валют</a></td>
+                        <td class="menuElt"><a href="historyQuery">История</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <h2 class="nameStyle">История запросов</h2>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+            <table class="formTable">
+                <tr>
+                    <td>
+                        <label class="nameStyle">Исходная валюта</label>
+                        <select name = "currencyCodeFrom" class="boldSelect">
+                            <option value = {{FromCode}}>{{FromDescr}}</option>
+                            {{#currencyFrom}}
+                            <option value = {{currencyCode}}>{{fullDescription}}</option>
+                            {{/currencyFrom}}
+                        </select>
+                    </td>
+                    <td>
+                        <label class="nameStyle">Целевая валюта</label>
+                        <select name = "currencyCodeTo" class="boldSelect">
+                            <option value = {{ToCode}}>{{ToDescr}}</option>
+                            {{#currencyTo}}
+                            <option value = {{currencyCode}}>{{fullDescription}}</option>
+                            {{/currencyTo}}
+                        </select>
+                    </td>
+                    <td>
+                        <label class="nameStyle">Дата</label>
+                        <input name="convertDate" type="date" class="boldSelect" value={{convertDate}}>
+                    </td>
+                </tr>
+                <input  type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+                <tr>
+                    <td colspan="3" align="center">
+                        <input name="submit" type="submit" value="Поиск" class="boldBtn"/>
+                    </td>
+                </tr>
+            </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table width="800" align="center" class="formTableData">
+                    <tr>
+                        <th class="thHeader">Исходная валюта</th>
+                        <th class="thHeader">Целевая валюта</th>
+                        <th class="thHeader">Исходная сумма</th>
+                        <th class="thHeader">Полученная сумма</th>
+                        <th class="thHeader">Дата</th>
+                    </tr>
+                    {{#history}}
+                    <tr>
+                        <td class="tdRow">{{currencyCodeFrom}}</td>
+                        <td class="tdRow">{{currencyCodeTo}}</td>
+                        <td class="tdRow">{{convertVal}}</td>
+                        <td class="tdRow">{{resultVal}}</td>
+                        <td class="tdRow">{{dateConvert}}</td>
+                    </tr>
+                    {{/history}}
+                </table>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

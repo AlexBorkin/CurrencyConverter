@@ -69,6 +69,7 @@ public class ExchRateService
 
         exchRateFrom = jdbcTemplate.queryForObject(strQueryExchRate, new Object[]{currFrom}, new ExchRateMapper());
         exchRateTo   = jdbcTemplate.queryForObject(strQueryExchRate, new Object[]{currTo}, new ExchRateMapper());
+
         currencyFrom = jdbcTemplate.queryForObject(strQueryCurrency, new Object[]{currFrom}, new CurrencyMapper());
         currencyTo   = jdbcTemplate.queryForObject(strQueryCurrency, new Object[]{currTo}, new CurrencyMapper());
 

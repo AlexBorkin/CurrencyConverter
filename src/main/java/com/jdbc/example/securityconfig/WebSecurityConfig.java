@@ -26,12 +26,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private DataSource dataSource;
-
-    private JdbcTemplate jdbcTemplate;
-
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder()
     {
@@ -41,10 +35,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
-        http.authorizeRequests().antMatchers("/registration").permitAll();
-        http.authorizeRequests().antMatchers("/converter").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers( "/registration").permitAll();
+       // http.authorizeRequests().antMatchers("/**").hasRole("ADMIN");
         http.authorizeRequests().anyRequest().authenticated();
-        //http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/accessDenied");
         http.authorizeRequests().and().formLogin().loginPage("/login").permitAll();
         http.authorizeRequests().and().logout().permitAll();
     }
@@ -54,32 +47,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter
     {
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
-
-
-//    @Configuration
-//    protected static class AuthenticationConfiguration extends GlobalAuthenticationConfigurerAdapter
-//    {
-//
-//        @Override
-//        public void init(AuthenticationManagerBuilder auth) throws Exception
-//        {
-//            auth
-//                    .inMemoryAuthentication()
-//                    .withUser("user").password("password").roles("USER");
-//        }
-//
-//    }
-
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        UserDetails user =
-//                User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("password")
-//                        .roles("USER")
-//                        .build();
-//
-//        return new InMemoryUserDetailsManager(user);
-//    }
 }

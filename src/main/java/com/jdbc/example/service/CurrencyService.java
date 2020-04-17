@@ -2,7 +2,6 @@ package com.jdbc.example.service;
 
 import com.jdbc.example.dataprovider.ValuteAttribute;
 import com.jdbc.example.entity.Currency;
-import com.jdbc.example.intf.InterfaceCurrency;
 import com.jdbc.example.mappers.CurrencyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,7 +11,7 @@ import javax.sql.DataSource;
 import java.util.*;
 
 @Service
-public class CurrencyService //implements InterfaceCurrency
+public class CurrencyService
 {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
@@ -28,14 +27,6 @@ public class CurrencyService //implements InterfaceCurrency
     {
     }
 
-    //@Override
-//    public void setDataSource(DataSource dataSource)
-//    {
-//        this.dataSource = dataSource;
-//        this.jdbcTemplate = new JdbcTemplate(dataSource);
-//    }
-
-    //@Override
     public void create(Currency currency)
     {
         String sqlQuery = "insert into Currency (CurrencyCode, Description) values (?,?);";
@@ -43,7 +34,6 @@ public class CurrencyService //implements InterfaceCurrency
         jdbcTemplate.update(sqlQuery, currency.getCurrencyCode(), currency.getDescription());
     }
 
-   // @Override
     public Currency getCurrency(String currencyCode)
     {
         Currency currency;
@@ -55,7 +45,6 @@ public class CurrencyService //implements InterfaceCurrency
         return currency;
     }
 
-    //@Override
     public List<Currency> listCurrency()
     {
         List<Currency> currencyList;

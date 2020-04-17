@@ -14,29 +14,15 @@ public class CurrencyController
 {
     private CurrencyService  currencyService;
     private ExchRateService  exchRateService;
-    private ValuteProvider currencyProvider;
+    private ValuteProvider   currencyProvider;
 
     @Autowired
     public CurrencyController(CurrencyService currencyService,
                               ExchRateService  exchRateService,
                               ValuteProvider currencyProvider)
     {
-        this.currencyService = currencyService;
-        this.exchRateService = exchRateService;
+        this.currencyService  = currencyService;
+        this.exchRateService  = exchRateService;
         this.currencyProvider = currencyProvider;
     }
-
-//    @GetMapping("/")
-//    public String mainPage()
-//    {
-//        return "main";
-//    }
-
-
-//    @PostMapping(value = "/createCurrency")
-//    public void create(@RequestBody Currency currency)
-//    {
-//        currencyService.create(currency);
-//    }
-
 }

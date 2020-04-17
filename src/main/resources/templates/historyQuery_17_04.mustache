@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Курсы валют</title>
+    <title>История запросов</title>
     <link rel="stylesheet" href="css/style.css"/>
 <!--    <style>-->
 
@@ -61,10 +61,7 @@
 <!--				font-size: 16;-->
 <!--			}-->
 
-<!--			input-->
-<!--			{-->
-
-<!--				height: 30;-->
+<!--			input{height: 30;-->
 <!--				width:95%;-->
 <!--				font-weight: bold;-->
 <!--				font-family: Arial;-->
@@ -95,7 +92,6 @@
 <!--			font-weight: normal;-->
 <!--			font-family: Arial;-->
 <!--			vertical-align: center;-->
-<!--			border: 1px solid #999;-->
 <!--            font-size: 14;}-->
 
 <!--		.filters{-->
@@ -108,11 +104,19 @@
 <!--		   .two{-->
 <!--            position: relative;-->
 <!--            border-collapse:separate;-->
-<!--            border: 1px solid #999;-->
-<!--            border-radius: 3px;-->
-<!--            font-size: 14;}-->
+<!--            width:20%;-->
+<!--            border-spacing:10px;-->
+<!--            border: 3px solid LightGray;-->
+<!--            border-radius: 7px;-->
+<!--            background-color: #ADD8E6;-->
+<!--            padding: 5px;-->
+<!--            font-weight: 600;-->
+<!--            box-shadow: 5px 5px 10px 5px LightGray;-->
+<!--            margin-left: 25%;-->
+<!--            margin-top: 5%;-->
+<!--            font-size: 14}-->
 
-<!--        .thHeader{-->
+<!--       .thHeader{-->
 <!--            font-weight: bold;-->
 <!--			font-family: Arial;-->
 <!--            font-size: 1.0em;-->
@@ -123,7 +127,7 @@
 <!--            text-align:center;-->
 <!--            }-->
 
-<!--        .tdRow {-->
+<!--       .tdRow {-->
 <!--            font-weight: bold;-->
 <!--			font-family: Arial;-->
 <!--            font-size: 0.8em;-->
@@ -132,43 +136,87 @@
 <!--            text-align:center;-->
 <!--            }-->
 
+
 <!--    </style>-->
 </head>
 <body>
+<form name='form' method='post'>
 <!--<h2>История запросов</h2>-->
 <table align="center" width="800">
-    <tr colspan="3" align="center">
+    <tr colspan="5" align="center">
         <td>
-            <table width="800" class="formTableData">
+            <table width="800" class="formTable">
                 <tr>
-                    <td class="menuElt"><a href="converter">Конвертер</a></td>
-                    <td class="menuElt"><a href="exchrates">Курсы валют</a></td>
-                    <td class="menuElt"><a href="historyQuery">История</a></td>
+                    <td class="boldBtn"><a href="converter">Конвертер</a></td>
+                    <td class="boldBtn"><a href="exchrates">Курсы валют</a></td>
+                    <td class="boldBtn"><a href="historyQuery">История</a></td>
                 </tr>
             </table>
         </td>
     </tr>
 
-    <tr>
-        <td colspan="3" align="center"><h2 class="nameStyle">Курсы валют</h2></td>
+    <tr colspan="5" align="center">
+        <td><h2 class="nameStyle">История запросов</h2></td>
     </tr>
 
-    <tr colspan="3">
+    <tr colspan="5" align="center">
+            <table width="800" align="center" class="formTable">
+                    <tr>
+                        <td>
+                            <label class="nameStyle">Исходная валюта</label>
+                            <select name = "currencyCodeFrom" class="boldSelect">
+                                <option value = {{FromCode}}>{{FromDescr}}</option>
+                                {{#currencyFrom}}
+                                    <option value = {{currencyCode}}>{{fullDescription}}</option>
+                                {{/currencyFrom}}
+                            </select>
+                        </td>
+                        <td>
+                            <label class="nameStyle">Целевая валюта</label>
+                            <select name = "currencyCodeTo" class="boldSelect">
+                                <option value = {{ToCode}}>{{ToDescr}}</option>
+                                {{#currencyTo}}
+                                    <option value = {{currencyCode}}>{{fullDescription}}</option>
+                                {{/currencyTo}}
+                            </select>
+                        </td>
+                        <td >
+                            <label class="nameStyle">Дата</label>
+                            <input name="convertDate" type="date" value={{convertDate}} class="boldSelect">
+                        </td>
+                        <input  type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+                    </tr>
+                    <tr colspan="3">
+                        <table width="200" align="center">
+                            <td>
+                                <input name="submit" type="submit" value="Поиск" class="boldBtn"/>
+                            </td>
+                        </table>
+                    </tr>
+            </table>
+    </tr>
+
+    <tr>
         <table width="800" align="center" class="formTableData">
             <tr>
+                <th class="thHeader">Исходная валюта</th>
+                <th class="thHeader">Целевая валюта</th>
+                <th class="thHeader">Исходная сумма</th>
+                <th class="thHeader">Полученная сумма</th>
                 <th class="thHeader">Дата</th>
-                <th class="thHeader">Код валюты</th>
-                <th class="thHeader">Курс</th>
             </tr>
-            {{#currency}}
-            <tr>
-                <td class="tdRow">{{DateRate}}</td>
-                <td class="tdRow">{{CurrencyCode}}</td>
-                <td class="tdRow">{{CurrencyRate}}</td>
-            </tr>
-            {{/currency}}
+            {{#history}}
+                <tr>
+                    <td class="tdRow">{{currencyCodeFrom}}</td>
+                    <td class="tdRow">{{currencyCodeTo}}</td>
+                    <td class="tdRow">{{convertVal}}</td>
+                    <td class="tdRow">{{resultVal}}</td>
+                    <td class="tdRow">{{dateConvert}}</td>
+                </tr>
+            {{/history}}
         </table>
     </tr>
 </table>
+</form>
 </body>
 </html>

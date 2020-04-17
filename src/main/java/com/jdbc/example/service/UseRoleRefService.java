@@ -64,7 +64,7 @@ public class UseRoleRefService
 
     public void createUserRoleRef(String userName, String roleName)
     {
-        String strQuery = "insert into public.\"userRoleRef\" (\"userName\", \"roleName2\") values(?,?);";
+        String strQuery = "insert into public.\"userRoleRef\" (\"userName\", \"roleName\") values(?,?);";
 
         jdbcTemplate.update(strQuery, userName, roleName);
     }

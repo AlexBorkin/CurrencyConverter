@@ -1,47 +1,66 @@
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Курсы валют</title>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <form name='form' method='post'>
 
-    <table  class="two" >
-        <tr >
-        <td colspan="2">
-            <p class="header">Конвертер</p>
-        </td>
+    <table align="center" width="800">
+        <tr align="center" width="800">
+            <td>
+                <table width="800" class="formTableData">
+                    <tr>
+                        <td class="menuElt"><a href="converter">Конвертер</a></td>
+                        <td class="menuElt"><a href="exchrates">Курсы валют</a></td>
+                        <td class="menuElt"><a href="historyQuery">История</a></td>
+                    </tr>
+                </table>
+            </td>
         </tr>
-    <tr>
-      <td>
-          <select name = "currFrom" class="boldSelect">
-              <option value = {{defFromCode}}>{{defFromDescr}}</option>
-              {{#currencyFrom}}
-                  <option value = {{currencyCode}}>{{fullDescription}}</option>
-              {{/currencyFrom}}
-          </select>
-      </td>
-      <td>
-          <select name = "currTo" class="boldSelect">
-              <option value = {{defToCode}}>{{defToDescr}}</option>
-              {{#currencyTo}}
-                  <option value = {{currencyCode}}>{{description}}</option>
-              {{/currencyTo}}
-          </select>
-      </td>
-    </tr>
-    <tr>
-        <td><input name="valueFrom" type="text" value={{valueFrom}} class="boldInput"></td>
-        <td><input name="valueTo"  type="text" value={{retValue}} class="boldInput"></td>
-    </tr>
-        <input  type="hidden" name="_csrf" value="{{_csrf.token}}"/>
-    <tr >
-        <td colspan="2" align="center">
-            <input name="submit" type="submit" value="Конвертировать" class="boldBtn" />
-        </td>
-    </tr>
-    </table>
 
+        <tr>
+            <td>
+                <h2 class="nameStyle">Конвертер</h2>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table width="800" class="formTable">
+                    <tr>
+                        <td>
+                            <select name = "currFrom" class="boldSelect">
+                                <option value = {{defFromCode}}>{{defFromDescr}}</option>
+                                {{#currencyFrom}}
+                                    <option value = {{currencyCode}}>{{fullDescription}}</option>
+                                {{/currencyFrom}}
+                            </select>
+                        </td>
+                        <td>
+                            <select name = "currTo" class="boldSelect">
+                                <option value = {{defToCode}}>{{defToDescr}}</option>
+                                {{#currencyTo}}
+                                    <option value = {{currencyCode}}>{{fullDescription}}</option>
+                                {{/currencyTo}}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input name="valueFrom" type="text" value={{valueFrom}} class="boldInput"></td>
+                        <td><input name="valueTo"  type="text" value={{retValue}} class="boldInput"></td>
+                    </tr>
+                    <input  type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+                    <tr>
+                        <td colspan="2" align="center">
+                            <input name="submit" type="submit" value="Конвертировать" class="boldBtn">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>

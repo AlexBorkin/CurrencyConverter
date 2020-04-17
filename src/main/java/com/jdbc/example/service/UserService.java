@@ -23,6 +23,7 @@ public class UserService implements UserDetailsService
 {
     private DataSource   dataSource;
     private JdbcTemplate jdbcTemplate;
+    private final String userRoleDefault = "USER";
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -69,7 +70,7 @@ public class UserService implements UserDetailsService
 
         jdbcTemplate.update(sqlQuery, userName, passwordEncoder.encode(password), true);
 
-        useRoleRefService.createUserRoleRef(userName, "USER");//TODO УБРАТЬ ГОВОНОКОД (ВЫНЕСТИ В НАСТРОЙКИ ИЛИ СДЕЛАТЬ МЕТОД В USERSERVICE!
+        useRoleRefService.createUserRoleRef(userName, userRoleDefault);
     }
 
     @Override

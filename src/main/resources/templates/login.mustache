@@ -1,26 +1,76 @@
 <html>
 <head>
     <title>Курсы валют</title>
-<!--    <link rel="stylesheet" href="css/style.css"/>-->
+    <style>
+          .boldSelect{
+        position: relative;
+        font-weight: 600;
+        width: 80%;
+        height: 30;
+        font-family: Arial;
+        border: 2px solid Grey;
+        font-size: 15}
+
+    .boldBtn{
+        position: relative;
+        font-weight: bold;
+        text-align: center;
+        font-family: Arial;
+        height: 35;
+        width: 150;
+        border-radius: 7px;
+        background-color: #DCDCDC;
+        font-size: 16}
+
+    .formTable{border-collapse:collapse;
+                    border: 2px solid Grey;
+                    background-color: LightGrey;}
+
+    .nameStyle {font-weight: bold;
+                    font-family: Arial;
+                    text-align:center;}
+
+
+
+    </style>
+
+    <!--    <link rel="stylesheet" href="css/style.css"/>-->
 </head>
 <body>
-<div>Вход на сайт</div>
+
 
 <form  name='form' action="/login" method="post">
-    <table>
-        <tr>
-            <td><input type="text" name="username" ></td>
+    <table align="center" width="500" class="formTable">
+        <tr >
+            <td colspan="2">
+                <h3 class="nameStyle">Вход на сайт</h3>
+            </td>
         </tr>
         <tr>
-            <td><input type="password" name="password" ></td>
+            <td align="center"><label class="nameStyle">Логин</label></td>
+            <td><input type="text" name="username" class="boldSelect"></td>
         </tr>
         <tr>
-            <td><input type="submit" name="Вход" ></td>
+            <td align="center"><label class="nameStyle">Пароль</label></td>
+            <td><input type="password" name="password" class="boldSelect"></td>
+        </tr>
+        <tr>
+            <td colspan="2" height="5"></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2"><input type="submit" name="Вход" value="Войти" class="boldBtn"></td>
+        </tr>
+        <tr>
+            <td colspan="2" height="5"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <a href="registration"><h4 class="nameStyle">Регистрация</h4></a>
+            </td>
         </tr>
         <input  type="hidden" name="_csrf" value="{{_csrf.token}}"/>
     </table>
 </form>
-<br>
-<a href="registration"><h3>Регистрация</h3></a>
+
 </body>
 </html>
