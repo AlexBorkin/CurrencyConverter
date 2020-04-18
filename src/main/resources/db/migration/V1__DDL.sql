@@ -11,6 +11,8 @@
 
 -- DROP TABLE public."user";
 
+GRANT postgres TO pvbvfcrepvfzqs;
+
 CREATE TABLE public."user"
 (
     "userName" character varying(20) COLLATE pg_catalog."default" NOT NULL,
