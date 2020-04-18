@@ -32,8 +32,12 @@ public class ConverterController
     @GetMapping({"/", "/converter"})
     public String converter(Model model)
     {
-        if (ConverterApplication.currencyListGlobal != null && !ConverterApplication.currencyListGlobal.isEmpty())
+        //if (ConverterApplication.currencyListGlobal = null && !ConverterApplication.currencyListGlobal.isEmpty())
+        if (ConverterApplication.currencyListGlobal.isEmpty())
         {
+            ConverterApplication.currencyListGlobal = currencyService.listCurrency();
+
+        }
             Currency currencyDef = ConverterApplication.currencyListGlobal.get(0);
 
             model.addAttribute("defFromCode", currencyDef.getCurrencyCode());
@@ -45,7 +49,7 @@ public class ConverterController
             model.addAttribute("currencyTo", ConverterApplication.currencyListGlobal);
             model.addAttribute("valueFrom", 1);
             model.addAttribute("retValue", 0);
-        }
+
 
         return "converter";
     }
@@ -54,6 +58,11 @@ public class ConverterController
     @Transactional
     public String calculate(String currFrom, String currTo, Double valueFrom, Model model)
     {
+        if (ConverterApplication.currencyListGlobal.isEmpty())
+        {
+            ConverterApplication.currencyListGlobal = currencyService.listCurrency();
+        }
+
         Double retVal = 0.0;
 
         retVal = exchRateService.calcValue(currFrom, currTo, valueFrom);

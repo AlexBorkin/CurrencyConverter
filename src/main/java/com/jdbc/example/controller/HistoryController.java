@@ -36,6 +36,12 @@ public class HistoryController
     {
         model.addAttribute("history", historyQueryService.getAll());
 
+        if (ConverterApplication.currencyListGlobal.isEmpty())
+        {
+            ConverterApplication.currencyListGlobal = currencyService.listCurrency();
+
+        }
+
         Currency currency = ConverterApplication.currencyListGlobal.get(0);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("");
 
@@ -60,6 +66,11 @@ public class HistoryController
              String convertDate,
              Model model) throws ParseException
     {
+        if (ConverterApplication.currencyListGlobal.isEmpty())
+        {
+            ConverterApplication.currencyListGlobal = currencyService.listCurrency();
+        }
+
         List<HistoryQuery> listHistoryQuery = historyQueryService.getByFilter(currencyCodeFrom, currencyCodeTo, convertDate);
 
         model.addAttribute("history", listHistoryQuery);
