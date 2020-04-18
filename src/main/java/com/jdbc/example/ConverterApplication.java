@@ -23,11 +23,7 @@ public class ConverterApplication
 	@Autowired
 	public static DataSource dataSource;
 
-//	@Autowired
 	public static List<Currency> currencyListGlobal;
-
-	//@Autowired
-//	public static CurrencyService currencyServiceGlobal;
 
 	public static void main(String[] args)
 	{
@@ -37,17 +33,5 @@ public class ConverterApplication
 
 		CurrencyService	currencyServiceApp = (CurrencyService) ctx.getBean("currencyService");
 		currencyListGlobal = currencyServiceApp.listCurrency();
-
-		//	String[] beanNames = ctx.getBeanDefinitionNames();
-
-		//		Arrays.sort(beanNames);
-		//
-		//		for (String beanName : beanNames)
-		//		{
-		//			System.out.println(beanName);
-		//		}
-
-
-
 	}
 }
