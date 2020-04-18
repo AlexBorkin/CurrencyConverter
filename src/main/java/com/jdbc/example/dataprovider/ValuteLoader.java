@@ -32,8 +32,8 @@ public class ValuteLoader
         this.valuteProvider = currencyProvider;
     }
 
-    @Scheduled(cron = "0 0/30 23 * * *")//Запуск каждый день в 23-30
-    //@Scheduled(fixedRate = 60000) //Запуск каждую минуту
+    //@Scheduled(cron = "0 0/30 23 * * *")//Запуск каждый день в 23-30
+    @Scheduled(fixedRate = 3600000) //Запуск каждый час
     public void loadFromCBR()
     {
         Map<String, ValuteAttribute>  currencyAttributeMap = null;
