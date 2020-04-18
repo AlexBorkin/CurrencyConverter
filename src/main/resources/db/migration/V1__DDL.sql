@@ -11,7 +11,7 @@
 
 -- DROP TABLE public."user";
 
-GRANT postgres TO pvbvfcrepvfzqs;
+--GRANT postgres TO pvbvfcrepvfzqs;
 
 CREATE TABLE public."user"
 (
@@ -26,7 +26,7 @@ CREATE TABLE public."user"
 TABLESPACE pg_default;
 
 ALTER TABLE public."user"
-    OWNER to postgres;
+    OWNER to pvbvfcrepvfzqs;
 
 --=========================================================================
 
@@ -44,7 +44,7 @@ CREATE TABLE public.role
 TABLESPACE pg_default;
 
 ALTER TABLE public.role
-    OWNER to postgres;
+    OWNER to pvbvfcrepvfzqs;
 
 --==========================================================================
 
@@ -70,7 +70,7 @@ CREATE TABLE public."userRoleRef"
 TABLESPACE pg_default;
 
 ALTER TABLE public."userRoleRef"
-    OWNER to postgres;
+    OWNER to pvbvfcrepvfzqs;
 
 --========================================================================
 
@@ -90,7 +90,7 @@ CREATE TABLE public.currency
 TABLESPACE pg_default;
 
 ALTER TABLE public.currency
-    OWNER to postgres;
+    OWNER to pvbvfcrepvfzqs;
 
 --===========================================================================
 
@@ -114,7 +114,7 @@ CREATE TABLE public."exchRates"
 TABLESPACE pg_default;
 
 ALTER TABLE public."exchRates"
-    OWNER to postgres;
+    OWNER to pvbvfcrepvfzqs;
 
 -- Index: dateExchRate_Idx
 
@@ -153,7 +153,7 @@ CREATE TABLE public."historyQuery"
 TABLESPACE pg_default;
 
 ALTER TABLE public."historyQuery"
-    OWNER to postgres;
+    OWNER to pvbvfcrepvfzqs;
 
 -- Index: date_Idx
 
