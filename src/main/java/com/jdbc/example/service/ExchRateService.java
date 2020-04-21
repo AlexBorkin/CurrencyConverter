@@ -48,7 +48,7 @@ public class ExchRateService
         return exchRateList;
     }
 
-    public Double calcValue(String currFrom, String currTo, Double value)
+    public Double calcValue(String currFrom, String currTo, Integer value)
     {
         Double resValue = 0.0;
 

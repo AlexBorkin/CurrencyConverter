@@ -15,6 +15,13 @@ public class CurrencyService
 {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
+    public static final Currency currencyAllElt = new Currency();
+
+    static
+    {
+        currencyAllElt.setCurrencyCode("");
+        currencyAllElt.setFullDescription("Все");
+    }
 
     @Autowired
     public CurrencyService(DataSource dataSource)
@@ -45,24 +52,47 @@ public class CurrencyService
         return currency;
     }
 
+//    public Currency initAllElt()
+//    {
+//        Currency    currencyAllElt = new Currency();
+//
+//        currencyAllElt.setCurrencyCode("");
+//        currencyAllElt.setFullDescription("Все");
+//
+//        return currencyAllElt;
+//    }
+
     public List<Currency> listCurrency()
     {
-        List<Currency> currencyList;
+        List<Currency>  currencyList = new ArrayList<Currency>();
+
+        List<Currency>  currencyListFromDB;
+
+      //  currencyList.add(currencyAllElt);
 
         String sqlQuery = "select * from Currency order by \"Description\";";
 
-        currencyList = jdbcTemplate.query(sqlQuery, new CurrencyMapper());
+        currencyListFromDB = jdbcTemplate.query(sqlQuery, new CurrencyMapper());
 
-        return currencyList;
+       // currencyList.addAll(currencyListFromDB);
+
+        return currencyListFromDB; //currencyList;
     }
 
     public Currency getById(String curr)
     {
         Currency currency;
 
-        String strQuery = "select * from currency where \"CurrencyCode\" = ?;";
+        if (curr.isEmpty())
+        {
+            currency = currencyAllElt;
+        }
+        else
+        {
+            String strQuery = "select * from currency where \"CurrencyCode\" = ?;";
 
-        currency = jdbcTemplate.queryForObject(strQuery, new Object[]{curr}, new CurrencyMapper());
+            currency = jdbcTemplate.queryForObject(strQuery, new Object[]{curr}, new CurrencyMapper());
+        }
 
         return currency;
     }

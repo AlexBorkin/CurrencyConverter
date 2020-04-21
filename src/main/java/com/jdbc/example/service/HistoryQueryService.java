@@ -45,7 +45,7 @@ public class HistoryQueryService
         String strQuery = "SELECT \"currencyCodeFrom\", \"currencyCodeTo\", \"convertVal\", \"resultVal\", \"dateConvert\"" +
                 " FROM public.\"historyQuery\" %s;";
 
-        String strFilters = " ";
+        String strFilters = "";
 
         if (!currencyCodeFrom.isEmpty() && currencyCodeFrom != null)
         {
