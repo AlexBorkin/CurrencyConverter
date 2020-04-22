@@ -52,31 +52,17 @@ public class CurrencyService
         return currency;
     }
 
-//    public Currency initAllElt()
-//    {
-//        Currency    currencyAllElt = new Currency();
-//
-//        currencyAllElt.setCurrencyCode("");
-//        currencyAllElt.setFullDescription("Все");
-//
-//        return currencyAllElt;
-//    }
-
     public List<Currency> listCurrency()
     {
         List<Currency>  currencyList = new ArrayList<Currency>();
 
         List<Currency>  currencyListFromDB;
 
-      //  currencyList.add(currencyAllElt);
-
         String sqlQuery = "select * from Currency order by \"Description\";";
 
         currencyListFromDB = jdbcTemplate.query(sqlQuery, new CurrencyMapper());
 
-       // currencyList.addAll(currencyListFromDB);
-
-        return currencyListFromDB; //currencyList;
+        return currencyListFromDB;
     }
 
     public Currency getById(String curr)
@@ -99,8 +85,6 @@ public class CurrencyService
 
     public void fillCurrency(Map<String, ValuteAttribute> map)
     {
-        ArrayList<ValuteAttribute> currencyListAttribute;
-
         ValuteAttribute curAttr;
 
         String strQuery = "insert into currency(\"CurrencyCode\", \"Description\", \"Nominal\", \"NumCode\") values (?,?,?,?);";

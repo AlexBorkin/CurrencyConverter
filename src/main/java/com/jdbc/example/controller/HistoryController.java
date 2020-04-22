@@ -47,7 +47,6 @@ public class HistoryController
         model.addAttribute("history", historyQueryService.getAll());
 
         List<Currency> retsultList = new ArrayList<Currency>();
-       // List<Currency> retsultListTo = new ArrayList<Currency>();
         retsultList.add(currencyAllElt);
 
         if (ConverterApplication.currencyListGlobal.isEmpty())
@@ -55,25 +54,19 @@ public class HistoryController
             ConverterApplication.currencyListGlobal = currencyService.listCurrency();
         }
 
-        Currency currency = currencyAllElt;//ConverterApplication.currencyListGlobal.get(0);
+        Currency currency = currencyAllElt;
 
         model.addAttribute("FromCode", currency.getCurrencyCode());
         model.addAttribute("FromDescr", currency.getFullDescription());
         model.addAttribute("ToCode", currency.getCurrencyCode());
         model.addAttribute("ToDescr", currency.getFullDescription());
 
-//        model.addAttribute("FromCode", "");
-//        model.addAttribute("FromDescr", "Все");
-//        model.addAttribute("ToCode", "");
-//        model.addAttribute("ToDescr", "Все");
-
         model.addAttribute("convertDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 
         retsultList = ConverterApplication.currencyListGlobal.stream().filter(x-> !x.getCurrencyCode().equals(currency.getCurrencyCode())).collect(Collectors.toList());
-       // retsultListTo = ConverterApplication.currencyListGlobal.stream().filter(x-> !x.getCurrencyCode().equals(currencyCodeTo)).collect(Collectors.toList());
 
-        model.addAttribute("currencyFrom", retsultList); //  ConverterApplication.currencyListGlobal);
-        model.addAttribute("currencyTo", retsultList); // ConverterApplication.currencyListGlobal);
+        model.addAttribute("currencyFrom", retsultList);
+        model.addAttribute("currencyTo", retsultList);
 
         return "historyQuery";
     }
@@ -117,8 +110,8 @@ public class HistoryController
 
         model.addAttribute("convertDate", convertDate);
 
-        model.addAttribute("currencyFrom", retsultListFrom);//ConverterApplication.currencyListGlobal);
-        model.addAttribute("currencyTo", retsultListTo);//ConverterApplication.currencyListGlobal);
+        model.addAttribute("currencyFrom", retsultListFrom);
+        model.addAttribute("currencyTo", retsultListTo);
 
         return "historyQuery";
     }

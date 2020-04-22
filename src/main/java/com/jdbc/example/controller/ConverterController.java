@@ -6,6 +6,7 @@ import com.jdbc.example.service.CurrencyService;
 import com.jdbc.example.service.ExchRateService;
 import com.jdbc.example.service.HistoryQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -22,6 +23,12 @@ public class ConverterController {
     public CurrencyService currencyService;
     public ExchRateService exchRateService;
     public HistoryQueryService historyQueryService;
+
+    @Value("${CurrencyRUR}")
+    private Integer currencyRURPos;
+
+    @Value("${CurrencyUSD}")
+    private Integer currencyUSDPos;
 
     @Autowired
     public ConverterController(CurrencyService currencyService, ExchRateService exchRateService, HistoryQueryService historyQueryService) {
@@ -41,25 +48,21 @@ public class ConverterController {
             ConverterApplication.currencyListGlobal = currencyService.listCurrency();
         }
 
-        //TODO ИСПРАВИТЬ ПРОВЕРКУ!!!
-        if (ConverterApplication.currencyListGlobal.size() > 21)
-        {
-            Currency currencyDefFrom = ConverterApplication.currencyListGlobal.get(21);//Рубль
-            Currency currencyDefTo   = ConverterApplication.currencyListGlobal.get(10);//Доллар
+        Currency currencyDefFrom = ConverterApplication.currencyListGlobal.get(currencyRURPos);
+        Currency currencyDefTo   = ConverterApplication.currencyListGlobal.get(currencyUSDPos);
 
-            resultListFrom = ConverterApplication.currencyListGlobal.stream().filter(x -> !x.getCurrencyCode().equals(currencyDefFrom.getCurrencyCode())).collect(Collectors.toList());
-            resultListTo = ConverterApplication.currencyListGlobal.stream().filter(x -> !x.getCurrencyCode().equals(currencyDefTo.getCurrencyCode())).collect(Collectors.toList());
+        resultListFrom = ConverterApplication.currencyListGlobal.stream().filter(x -> !x.getCurrencyCode().equals(currencyDefFrom.getCurrencyCode())).collect(Collectors.toList());
+        resultListTo = ConverterApplication.currencyListGlobal.stream().filter(x -> !x.getCurrencyCode().equals(currencyDefTo.getCurrencyCode())).collect(Collectors.toList());
 
-            model.addAttribute("currencyFrom", resultListFrom); //ConverterApplication.currencyListGlobal);
-            model.addAttribute("currencyTo", resultListTo);//ConverterApplication.currencyListGlobal);
-            model.addAttribute("valueFrom",1);
-            model.addAttribute("retValue",0.0);
+        model.addAttribute("currencyFrom", resultListFrom);
+        model.addAttribute("currencyTo", resultListTo);
+        model.addAttribute("valueFrom",1);
+        model.addAttribute("retValue",0.0);
 
-            model.addAttribute("FromCode", currencyDefFrom.getCurrencyCode());
-            model.addAttribute("FromDescr", currencyDefFrom.getFullDescription());
-            model.addAttribute("ToCode",currencyDefTo.getCurrencyCode());
-            model.addAttribute("ToDescr",currencyDefTo.getFullDescription());
-        }
+        model.addAttribute("FromCode", currencyDefFrom.getCurrencyCode());
+        model.addAttribute("FromDescr", currencyDefFrom.getFullDescription());
+        model.addAttribute("ToCode",currencyDefTo.getCurrencyCode());
+        model.addAttribute("ToDescr",currencyDefTo.getFullDescription());
 
         return "converter";
     }
@@ -69,7 +72,7 @@ public class ConverterController {
     public String calculate(String currFrom, String currTo, Integer valueFrom, Model model)
     {
         List<Currency> retsultListFrom = new ArrayList<Currency>();
-        List<Currency> retsultListTo = new ArrayList<Currency>();
+        List<Currency> retsultListTo   = new ArrayList<Currency>();
 
         if (ConverterApplication.currencyListGlobal.isEmpty())
         {
@@ -91,8 +94,8 @@ public class ConverterController {
         model.addAttribute("ToCode",    currDefTo.getCurrencyCode());
         model.addAttribute("ToDescr",   currDefTo.getFullDescription());
 
-        model.addAttribute("currencyFrom", retsultListFrom); //ConverterApplication.currencyListGlobal);
-        model.addAttribute("currencyTo",   retsultListTo);   //ConverterApplication.currencyListGlobal);
+        model.addAttribute("currencyFrom", retsultListFrom);
+        model.addAttribute("currencyTo",   retsultListTo);
         model.addAttribute("valueFrom",    valueFrom);
         model.addAttribute("retValue",     retVal);
 

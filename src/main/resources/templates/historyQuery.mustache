@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
-<form name='form' method='post'>
+
     <table align="center" width="800">
         <tr align="center">
             <td>
@@ -13,6 +13,10 @@
                         <td class="menuElt"><a href="converter">Конвертер</a></td>
                         <td class="menuElt"><a href="exchrates">Курсы валют</a></td>
                         <td class="menuElt"><a href="historyQuery">История</a></td>
+                        <form action="logout" method="post">
+                            <input  type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+                            <td class="menuElt"><input type="submit" value="Выйти" class="menuEltLogout"></td>
+                        </form>
                     </tr>
                 </table>
             </td>
@@ -24,6 +28,8 @@
             </td>
         </tr>
 
+
+        <form name='form' method='post'>
         <tr>
             <td>
             <table class="formTable">
@@ -68,6 +74,8 @@
             </table>
             </td>
         </tr>
+        </form>
+
 
         <tr>
             <td>
@@ -97,6 +105,6 @@
             </td>
         </tr>
     </table>
-</form>
+
 </body>
 </html>

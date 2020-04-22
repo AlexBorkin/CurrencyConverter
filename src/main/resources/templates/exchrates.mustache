@@ -13,6 +13,10 @@
                     <td class="menuElt"><a href="converter">Конвертер</a></td>
                     <td class="menuElt"><a href="exchrates">Курсы валют</a></td>
                     <td class="menuElt"><a href="historyQuery">История</a></td>
+                    <form action="logout" method="post">
+                            <input  type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+                    <td class="menuElt"><input type="submit" value="Выйти" class="menuEltLogout"></td>
+                    </form>
                 </tr>
             </table>
         </td>

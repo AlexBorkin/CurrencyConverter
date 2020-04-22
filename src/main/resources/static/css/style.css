@@ -94,5 +94,17 @@
                 background-color: #DCDCDC;
                 font-size: 15}
 
+        .menuEltLogout{
+                position: relative;
+                font-weight: bold;
+                text-align: center;
+                font-family: Arial;
+                height: 40;
+                width: 250;
+                text-decoration: underline;
+                border: none;
+                background-color: #DCDCDC;
+                font-size: 15}
+
         .tdSelect {width: 50;
                   text-align:center;}
