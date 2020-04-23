@@ -42,7 +42,11 @@ public class ExchRateService
 
     public List<ExchRate> getAll()
     {
-        String strQuery = "select * from public.\"exchRates\" order by \"DateRate\" desc;";
+        String strQuery = "SELECT Rates.\"DateRate\", Rates.\"CurrencyCode\", Rates.\"CurrencyRate\", Curr.\"Description\" as \"CurrencyDescription\" " +
+                        " FROM public.\"exchRates\" as Rates " +
+                        " LEFT JOIN public.\"currency\" as Curr on Rates.\"CurrencyCode\" = Curr.\"CurrencyCode\""+
+                        " order by \"DateRate\" desc, \"CurrencyDescription\" asc;";
+
         List<ExchRate> exchRateList = jdbcTemplate.query(strQuery, new ExchRateMapper());
 
         return exchRateList;
@@ -54,16 +58,16 @@ public class ExchRateService
 
         Double curValFrom;
         Double curValTo;
-
         ExchRate exchRateFrom;
         ExchRate exchRateTo;
-
         Currency currencyFrom;
         Currency currencyTo;
 
-        String strQueryExchRate = "select * from public.\"exchRates\" AS RATE\n" +
-                                    "where \"CurrencyCode\" = ? \n" +
-                                    "order by \"DateRate\" desc LIMIT 1;";
+        String strQueryExchRate = "SELECT Rates.\"DateRate\", Rates.\"CurrencyCode\", Rates.\"CurrencyRate\", Curr.\"Description\" as \"CurrencyDescription\"\n" +
+                " FROM public.\"exchRates\" as Rates " +
+                "LEFT JOIN public.\"currency\" as Curr on \tRates.\"CurrencyCode\" = Curr.\"CurrencyCode\"" +
+                "where Rates.\"CurrencyCode\" = ? " +
+                "order by \"DateRate\" desc LIMIT 1;";
 
         String strQueryCurrency = "select * from public.\"currency\" where \"CurrencyCode\" = ? ;";
 

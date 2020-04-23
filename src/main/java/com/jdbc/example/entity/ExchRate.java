@@ -10,6 +10,8 @@ public class ExchRate
     private Date dateRate;
     private Double currencyRate;
     private String currencyCode;
+    private String currencyDescription;
+    private String fullDescription;
 
     public ExchRate()
     {
@@ -37,5 +39,21 @@ public class ExchRate
 
     public void setCurrencyCode(String currencyCode) {
         this.currencyCode = currencyCode;
+    }
+
+    public String getCurrencyDescription() {
+        return currencyDescription;
+    }
+
+    public void setCurrencyDescription(String currencyDescription) {
+        this.currencyDescription = currencyDescription;
+    }
+
+    public String getFullDescription() {
+        return fullDescription;
+    }
+
+    public void setFullDescription(String fullDescription) {
+        this.fullDescription = fullDescription;
     }
 }

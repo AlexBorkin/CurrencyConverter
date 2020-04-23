@@ -16,6 +16,8 @@ public class ExchRateMapper implements RowMapper<ExchRate>
         exchRate.setCurrencyCode(resultSet.getString("CurrencyCode"));
         exchRate.setDateRate(resultSet.getDate("DateRate"));
         exchRate.setCurrencyRate(resultSet.getDouble("CurrencyRate"));
+        exchRate.setCurrencyDescription(resultSet.getString("CurrencyDescription"));
+        exchRate.setFullDescription(resultSet.getString("CurrencyDescription") + " (" + resultSet.getString("CurrencyCode") + ")");
 
         return exchRate;
     }

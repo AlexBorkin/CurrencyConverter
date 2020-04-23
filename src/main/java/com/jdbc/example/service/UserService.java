@@ -7,6 +7,7 @@ import com.jdbc.example.entity.UserRoleRef;
 import com.jdbc.example.mappers.ExchRateMapper;
 import com.jdbc.example.mappers.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,7 +24,9 @@ public class UserService implements UserDetailsService
 {
     private DataSource   dataSource;
     private JdbcTemplate jdbcTemplate;
-    private final String userRoleDefault = "USER";
+
+    @Value("${UserRoleDefault}")
+    private String userRoleDefault;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;

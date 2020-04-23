@@ -35,8 +35,8 @@
                 <table width="800" class="formTable">
                     <tr>
                         <td>
+                            <label class="nameStyle">Исходная валюта</label>
                             <select name = "currFrom" class="boldSelect">
-<!--                                <option selected value ="RUR">Российский рубль (RUR)</option>-->
                                 <option value = {{FromCode}}>{{FromDescr}}</option>
                                 {{#currencyFrom}}
                                     <option value = {{currencyCode}}>{{fullDescription}}</option>
@@ -44,8 +44,8 @@
                             </select>
                         </td>
                         <td>
+                            <label class="nameStyle">Целевая валюта</label>
                             <select name = "currTo" class="boldSelect">
-<!--                                <option selected value = "USD">Доллар США (USD)</option>-->
                                 <option value = {{ToCode}}>{{ToDescr}}</option>
                                 {{#currencyTo}}
                                     <option value = {{currencyCode}}>{{fullDescription}}</option>
@@ -55,7 +55,6 @@
                     </tr>
                     <tr>
                         <td><input name="valueFrom" type="text" value={{valueFrom}} class="boldInput" pattern="[0-9]+"></td>
-<!--                        pattern="[0-9]+\.[0-9]+"-->
                         <td><input name="valueTo"  type="text" value={{retValue}} class="boldInput" readonly="true"></td>
                     </tr>
                     <input  type="hidden" name="_csrf" value="{{_csrf.token}}"/>
